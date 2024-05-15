@@ -2,3 +2,4 @@ dnsutils
 iproute2
 iputils-ping
 sudo
+tcpdump

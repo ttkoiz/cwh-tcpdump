@@ -157,6 +157,9 @@ if [ "$(id -u)" == 0 ] ; then
     if [[ "$GRANT_SUDO" == "1" || "$GRANT_SUDO" == "yes" ]]; then
         _log "Granting ${NB_USER} passwordless sudo rights!"
         echo "${NB_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/added-by-start-script
+    else
+        _log "Granting ${NB_USER} passwordless sudo rights for tcpdump!"
+        echo "${NB_USER} ALL=(ALL) NOPASSWD: /usr/bin/tcpdump" >> /etc/sudoers.d/tcpdump
     fi
 
     # NOTE: This hook is run as the root user!
