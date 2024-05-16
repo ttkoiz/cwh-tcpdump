@@ -153,6 +153,10 @@ if [ "$(id -u)" == 0 ] ; then
     # Prepend ${NB_PYTHON_PREFIX}/bin to sudo secure_path
     sed -r "s#Defaults\s+secure_path\s*=\s*\"?([^\"]+)\"?#Defaults secure_path=\"${NB_PYTHON_PREFIX}/bin:\1\"#" /etc/sudoers | grep secure_path > /etc/sudoers.d/path
 
+    # Enable nblineage extension
+    jupyter nblineage quick-setup
+    chown -R "${NB_UID}:${NB_GID}" "/home/${NB_USER}/.jupyter/nbconfig"
+
     # Optionally grant passwordless sudo rights for the desired user
     if [[ "$GRANT_SUDO" == "1" || "$GRANT_SUDO" == "yes" ]]; then
         _log "Granting ${NB_USER} passwordless sudo rights!"
