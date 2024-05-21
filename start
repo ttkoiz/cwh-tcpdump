@@ -159,10 +159,11 @@ if [ "$(id -u)" == 0 ] ; then
     jupyter nbclassic-extension enable lc_multi_outputs/main --sys-prefix
     jupyter nbclassic-extension install --py lc_wrapper --sys-prefix 
     jupyter nbclassic-extension enable lc_wrapper --sys-prefix
-    mkdir -p /tmp/kernels/python3-wrapper
-    echo '{"display_name": "Python 3 (LC_wrapper)", "language": "python", "argv": ["/srv/conda/envs/notebook/bin/python", "-m", "lc_wrapper", "-f", "{connection_file}" ]}' > /tmp/kernels/python3-wrapper/kernel.json
+    mkdir -p /tmp/kernels/python3 /tmp/kernels/wrapper-kernel
+    echo '{"display_name": "Python 3 (LC_wrapper)", "language": "python", "argv": ["/srv/conda/envs/notebook/bin/python", "-m", "lc_wrapper", "-f", "{connection_file}" ]}' > /tmp/kernels/python3/kernel.json
     jupyter kernelspec install /tmp/kernels/python3-wrapper --sys-prefix
-    jupyter wrapper-kernelspec install /tmp/wrapper-kernels/python3 --sys-prefix 
+    echo '{"display_name": "Python 3", "language": "python", "argv": ["/srv/conda/envs/notebook/bin/python", "-m", "lc_wrapper", "-f", "{connection_file}" ]}' > /tmp/kernels/python3/kernel.json > /tmp/kernels/wrapper-kernel/kernel.json
+    jupyter wrapper-kernelspec install /tmp/kernels/wrapper-kernel --sys-prefix 
     rm -rf /tmp/kernels
     touch /srv/conda/envs/notebook/etc/jupyter/jupyter_notebook_config.py
     echo "c.MultiKernelManager.kernel_manager_class = 'lc_wrapper.AsyncLCWrapperKernelManager'" >> /srv/conda/envs/notebook/etc/jupyter/jupyter_notebook_config.py
