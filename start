@@ -165,10 +165,7 @@ if [ "$(id -u)" == 0 ] ; then
     echo '{"display_name": "Python 3", "language": "python", "argv": ["/srv/conda/envs/notebook/bin/python", "-m", "lc_wrapper", "-f", "{connection_file}" ]}' > /tmp/wrapper-kernels/python3/kernel.json
     jupyter wrapper-kernelspec install /tmp/wrapper-kernels/python3 --sys-prefix
     rm -rf /tmp/kernels /tmp/wrapper-kernels
-
-    touch /srv/conda/envs/notebook/etc/jupyter/jupyter_notebook_config.py
-    echo "c.MultiKernelManager.kernel_manager_class = 'lc_wrapper.AsyncLCWrapperKernelManager'" >> /srv/conda/envs/notebook/etc/jupyter/jupyter_notebook_config.py
-    echo "c.NotebookApp.kernel_spec_manager_class = 'lc_wrapper.LCWrapperKernelSpecManager'" >> /srv/conda/envs/notebook/etc/jupyter/jupyter_notebook_config.py
+    echo '{"MultiKernelManager": {"kernel_manager_class": "lc_wrapper.AsyncLCWrapperKernelManager"}, "NotebookApp": {"kernel_spec_manager_class": "lc_wrapper.LCWrapperKernelSpecManager"}}' > /srv/conda/envs/notebook/etc/jupyter/jupyter_notebook_config.d/lc_wrapper.json
 
     # Optionally grant passwordless sudo rights for the desired user
     if [[ "$GRANT_SUDO" == "1" || "$GRANT_SUDO" == "yes" ]]; then
