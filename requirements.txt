@@ -1,3 +1,2 @@
-lc-multi-outputs @ git+https://github.com/NII-cloud-operation/Jupyter-multi_outputs@43f4eaea3eb027e8cf5cb58d1fc66bd167be964c
 lc-nblineage @ https://github.com/NII-cloud-operation/Jupyter-LC_nblineage/tarball/master#sha256=471f01fd787a7ccd9e48abcbc98a0be7383bd3c8b32227b3bbc384d0ddfe555f
 lc_wrapper @ https://github.com/NII-cloud-operation/Jupyter-LC_wrapper/tarball/master#sha256=4ec42fe20ee7dedf475be555a533290ddd3fd472442c39ef544ae29b15c9fd4c
