@@ -146,6 +146,8 @@ if [ "$(id -u)" == 0 ] ; then
             chown ${CHOWN_EXTRA_OPTS} "${NB_UID}:${NB_GID}" "${extra_dir}"
         done
     fi
+    _log "Ensuring /home/${NB_USER} is owned by ${NB_UID}:${NB_GID}"
+    find "/home/${NB_USER}" \( \( -name 'admin_tools' -o -name 'info' -o -name 'textbook' -o -name 'tools' \) -prune \) -o -print0 | xargs -0 chown "${NB_UID}:${NB_GID}" 
 
     # Update potentially outdated environment variables since image build
     export XDG_CACHE_HOME="/home/${NB_USER}/.cache"
