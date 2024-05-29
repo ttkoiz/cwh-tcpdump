@@ -157,6 +157,8 @@ if [ "$(id -u)" == 0 ] ; then
 
     # Enable nblineage, lc_multi_outputs, lc_wrapper extension
     jupyter nblineage quick-setup --sys-prefix
+    jupyter nbclassic-extension install --py lc_multi_outputs --sys-prefix
+    jupyter nbclassic-extension enable --py lc_multi_outputs --sys-prefix
     jupyter nbclassic-extension install --py lc_wrapper --sys-prefix 
     jupyter nbclassic-extension enable --py lc_wrapper --sys-prefix
     mkdir -p /tmp/kernels/python3-wrapper /tmp/wrapper-kernels/python3
